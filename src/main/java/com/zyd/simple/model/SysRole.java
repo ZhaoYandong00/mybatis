@@ -3,6 +3,8 @@ package com.zyd.simple.model;
 import java.util.Date;
 import java.util.List;
 
+import com.zyd.simple.type.Enabled;
+
 /**
  * 
  * 角色表
@@ -20,7 +22,7 @@ public class SysRole {
 	/**
 	 * 有效标志
 	 */
-	private int enabled;
+	private Enabled enabled;
 	/**
 	 * 创建人
 	 */
@@ -66,11 +68,11 @@ public class SysRole {
 		this.roleName = roleName;
 	}
 
-	public int getEnabled() {
+	public Enabled getEnabled() {
 		return enabled;
 	}
 
-	public void setEnabled(int enabled) {
+	public void setEnabled(Enabled enabled) {
 		this.enabled = enabled;
 	}
 

@@ -12,6 +12,7 @@ import org.junit.Test;
 import com.zyd.simple.mapper.RoleMapper;
 import com.zyd.simple.model.SysPrivilege;
 import com.zyd.simple.model.SysRole;
+import com.zyd.simple.type.Enabled;
 
 public class RoleMapperTest extends BaseMapperTest {
 
@@ -75,7 +76,7 @@ public class RoleMapperTest extends BaseMapperTest {
 			SysRole role = new SysRole();
 
 			role.setRoleName("用户");
-			role.setEnabled(0);
+			role.setEnabled(Enabled.disabled);
 			role.setCreateBy(1L);
 			role.setCreateTime(new Date());
 			int result = roleMapper.insert(role);
@@ -97,7 +98,7 @@ public class RoleMapperTest extends BaseMapperTest {
 			SysRole role = new SysRole();
 
 			role.setRoleName("用户");
-			role.setEnabled(0);
+			role.setEnabled(Enabled.disabled);
 			role.setCreateBy(1L);
 			role.setCreateTime(new Date());
 			int result = roleMapper.insert2(role);
@@ -119,7 +120,7 @@ public class RoleMapperTest extends BaseMapperTest {
 			// 创建一个Role对象
 			SysRole role = new SysRole();
 			role.setRoleName("用户");
-			role.setEnabled(0);
+			role.setEnabled(Enabled.disabled);
 			role.setCreateBy(1L);
 			role.setCreateTime(new Date());
 			int result = roleMapper.insert3(role);
@@ -200,7 +201,7 @@ public class RoleMapperTest extends BaseMapperTest {
 		try {
 			RoleMapper roleMapper = sqlSession.getMapper(RoleMapper.class);
 			SysRole role = roleMapper.selectById(2L);
-			role.setEnabled(0);
+			role.setEnabled(Enabled.disabled);
 			roleMapper.updateById(role);
 			List<SysRole> roleList = roleMapper.selectRoleByUserIdChoose(1L);
 			for (SysRole r : roleList) {
@@ -216,6 +217,24 @@ public class RoleMapperTest extends BaseMapperTest {
 				}
 			}
 		} finally {
+			sqlSession.rollback();
+			sqlSession.close();
+		}
+	}
+
+	@Test
+	public void testUpdateById2() {
+		SqlSession sqlSession = getSqlSession();
+		try {
+			RoleMapper roleMapper = sqlSession.getMapper(RoleMapper.class);
+			// 从sys_role获取一个对象
+			SysRole role = roleMapper.selectById(2L);
+			assertEquals(Enabled.enabled, role.getEnabled());
+			role.setEnabled(Enabled.disabled);
+			roleMapper.updateById(role);
+
+		} finally {
+			// 不影响其他测试，进行回滚
 			sqlSession.rollback();
 			sqlSession.close();
 		}

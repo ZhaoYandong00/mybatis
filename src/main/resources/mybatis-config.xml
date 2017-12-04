@@ -16,6 +16,11 @@
 	<typeAliases>
 		<package name="com.zyd.simple.model" />
 	</typeAliases>
+	<typeHandlers>
+		<!--枚举类型处理器 -->
+		<typeHandler handler="com.zyd.simple.type.EnabledTypeHandler"
+			javaType="com.zyd.simple.type.Enabled" />
+	</typeHandlers>
 	<!-- 环境配置数据库连接 -->
 	<environments default="development">
 		<environment id="development">

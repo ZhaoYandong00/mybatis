@@ -337,8 +337,49 @@
 	<select id="selectAllUserAndRoleSelect" resultMap="userRoleListMapSelect">
 		select
 		u.*
-		from sys_user u
+		from
+		sys_user u
 		where u.id=#{id}
 	</select>
+	<select id="selectUserById" statementType="CALLABLE" useCache="false">
+		{call select_user_by_id(
+		#{id,mode=IN},
+		#{userName,mode=OUT,jdbcType=VARCHAR},
+		#{userPassWord,mode=OUT,jdbcType=VARCHAR},
+		#{userEmail,mode=OUT,jdbcType=VARCHAR},
+		#{userInfo,mode=OUT,jdbcType=VARCHAR},
+		#{headImg,mode=OUT,jdbcType=BLOB,javaType=_byte[]},
+		#{createTime,mode=OUT,jdbcType=TIMESTAMP}
+		)}
+	</select>
+	<select id="selectUserPage" statementType="CALLABLE" useCache="false"
+		resultMap="userMap">
+		{
+		call select_user_page(
+		#{userName,mode=IN},
+		#{offset,mode=IN},
+		#{limit,mode=IN},
+		#{total,mode=OUT,jdbcType=BIGINT}
+		)}
+	</select>
+	<insert id="insertUserAndRoles" statementType="CALLABLE">
+		{call
+		insert_user_and_roles(
+		#{user.id, mode=OUT, jdbcType=BIGINT},
+		#{user.userName, mode=IN},
+		#{user.userPassWord, mode=IN},
+		#{user.userEmail, mode=IN},
+		#{user.userInfo, mode=IN},
+		#{user.headImg,mode=IN, jdbcType=BLOB},
+		#{user.createTime,
+		mode=OUT,jdbcType=TIMESTAMP},
+		#{roleIds, mode=IN}
+		)}
+	</insert>
+	<delete id="deleteUserById" statementType="CALLABLE">
+		{call
+		delete_user_by_id(#{id, mode=IN})}
+	</delete>
+
 </mapper>
 
