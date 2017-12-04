@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE generatorConfiguration 
+        PUBLIC "-//mybatis.org//DTD MyBatis Generator Configuration 1.0//EN"
+                 "http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd">
+<generatorConfiguration>
+	<classPathEntry
+		location="G:\JAVA\repository\mysql\mysql-connector-java\5.1.38\mysql-connector-java-5.1.38.jar" />
+	<!-- id：用来确定该标签 flat：每个表生成一个实体类 MyBatis3Simple：不生成与Example相关的方法 -->
+	<context id="MySqlContext" targetRuntime="MyBatis3"
+		defaultModelType="flat">
+		<!-- 配置生成注释信息 -->
+		<commentGenerator>
+			<!-- 阻止生成注释包含时间戳 -->
+			<property name="suppressDate" value="true" />
+			<!-- 添加数据库表的备注信息 -->
+			<property name="addRemarkComments" value="true" />
+		</commentGenerator>
+		<!-- 数据库连接配置 -->
+		<jdbcConnection driverClass="com.mysql.jdbc.Driver"
+			connectionURL="jdbc:mysql://localhost:3306/mybatis?useSSL=true"
+			userId="root" password="root">
+		</jdbcConnection>
+		<!-- 生成包名test.model -->
+		<javaModelGenerator targetPackage="com.zyd.simple.model"
+			targetProject="simple\src\main\java">
+			<property name="trimStrings" value="true" />
+		</javaModelGenerator>
+		<!-- Mapper.xml文件位置 -->
+		<sqlMapGenerator targetPackage="com.zyd.simple.mapper"
+			targetProject="simple\src\main\resources"></sqlMapGenerator>
+		<!-- Mapper接口位置 -->
+		<javaClientGenerator targetPackage="com.zyd.simple.mapper"
+			type="XMLMAPPER" targetProject="simple\src\main\java"></javaClientGenerator>
+		<!-- 通配符匹配数据库中所有的表 -->
+		<table tableName="country">
+			<generatedKey column="id" sqlStatement="MySql" />
+		</table>
+	</context>
+
+</generatorConfiguration>

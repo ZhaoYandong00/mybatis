@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE configuration 
+      PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+      "http://mybatis.org/dtd/mybatis-3-config.dtd">
+<configuration>
+	<!-- 设置 -->
+	<settings>
+		<!-- 指定使用LOG4J输出日志 -->
+		<setting name="logImpl" value="LOG4J" />
+		<!-- 下划线转驼峰 -->
+		<setting name="mapUnderscoreToCamelCase" value="true" />
+		<!-- 延迟加载 -->
+		<setting name="aggressiveLazyLoading" value="false" />
+	</settings>
+	<!-- 包别名 -->
+	<typeAliases>
+		<package name="com.zyd.simple.model" />
+	</typeAliases>
+	<!-- 环境配置数据库连接 -->
+	<environments default="development">
+		<environment id="development">
+			<transactionManager type="JDBC">
+				<property name="" value="" />
+			</transactionManager>
+			<dataSource type="UNPOOLED">
+				<property name="driver" value="com.mysql.jdbc.Driver" />
+				<property name="url"
+					value="jdbc:mysql://localhost:3306/mybatis?useSSL=true" />
+				<property name="username" value="root" />
+				<property name="password" value="root" />
+			</dataSource>
+		</environment>
+	</environments>
+	<databaseIdProvider type="DB_VENDOR">
+		<property name="SQL Server" value="sqlserver" />
+		<property name="DB2" value="db2" />
+		<property name="Oracle" value="oracle" />
+		<property name="MySQL" value="mysql" />
+		<property name="PostgreSQl" value="postgresql" />
+		<property name="Derby" value="derby" />
+		<property name="HSQL" value="hsqldb" />
+		<property name="H2" value="h2" />
+	</databaseIdProvider>
+
+	<!-- SQL语句和配置文件 -->
+	<mappers>
+		<package name="com.zyd.simple.mapper" />
+	</mappers>
+
+</configuration>

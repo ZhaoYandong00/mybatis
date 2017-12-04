@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper 
+      PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+      "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!-- XML的命名空间 -->
+<mapper namespace="com.zyd.simple.mapper.PrivilegeMapper">
+	<resultMap type="com.zyd.simple.model.SysPrivilege" id="privilegeMap">
+		<id property="id" column="id" />
+		<result property="privilegeName" column="privilege_name" />
+		<result property="privilegeUrl" column="privilege_url" />
+	</resultMap>
+	<select id="selectPrivilegeByRoleId" resultMap="privilegeMap">
+		select p.*
+		from
+		sys_privilege p
+		inner join sys_role_privilege rp on rp.privilege_id =
+		p.id
+		where role_id=#{roleId}
+	</select>
+</mapper>
+
