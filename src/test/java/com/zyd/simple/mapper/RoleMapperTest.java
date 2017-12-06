@@ -239,4 +239,5 @@ public class RoleMapperTest extends BaseMapperTest {
 			sqlSession.close();
 		}
 	}
+
 }

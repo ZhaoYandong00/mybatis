@@ -1,5 +1,6 @@
 package com.zyd.simple.model;
 
+import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
 
@@ -8,7 +9,11 @@ import java.util.List;
  * 用户表
  *
  */
-public class SysUser {
+public class SysUser implements Serializable {
+	/**
+	 * 串行版本号
+	 */
+	private static final long serialVersionUID = -6864819366458209381L;
 	/**
 	 * 用户ID
 	 */

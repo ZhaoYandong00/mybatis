@@ -1,5 +1,6 @@
 package com.zyd.simple.model;
 
+import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
 
@@ -10,7 +11,11 @@ import com.zyd.simple.type.Enabled;
  * 角色表
  *
  */
-public class SysRole {
+public class SysRole implements Serializable {
+	/**
+	 * 串行版本标识号
+	 */
+	private static final long serialVersionUID = 4453208576666148259L;
 	/**
 	 * 角色ID
 	 */

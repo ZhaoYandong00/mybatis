@@ -2,6 +2,7 @@ package com.zyd.simple.mapper;
 
 import java.util.List;
 
+import org.apache.ibatis.annotations.CacheNamespaceRef;
 import org.apache.ibatis.annotations.Delete;
 import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Options;
@@ -14,6 +15,8 @@ import org.apache.ibatis.annotations.Update;
 
 import com.zyd.simple.model.SysRole;
 
+//注解方法二级缓存
+@CacheNamespaceRef(RoleMapper.class)
 public interface RoleMapper {
 
 	/**

@@ -4,6 +4,9 @@
       "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <!-- XML的命名空间 -->
 <mapper namespace="com.zyd.simple.mapper.RoleMapper">
+	<!-- 二级缓存 -->
+	<cache type="org.mybatis.caches.ehcache.EhcacheCache" />
+	<!-- eviction="FIFO" flushInterval="60000" size="512" readOnly="false" -->
 	<resultMap type="com.zyd.simple.model.SysRole" id="roleMap">
 		<id property="id" column="id" />
 		<result property="roleName" column="role_name" />

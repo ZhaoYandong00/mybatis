@@ -11,6 +11,8 @@
 		<setting name="mapUnderscoreToCamelCase" value="true" />
 		<!-- 延迟加载 -->
 		<setting name="aggressiveLazyLoading" value="false" />
+		<!-- 二级缓存 -->
+		<setting name="cacheEnabled" value="true" />
 	</settings>
 	<!-- 包别名 -->
 	<typeAliases>
