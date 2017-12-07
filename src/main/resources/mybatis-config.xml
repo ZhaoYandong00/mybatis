@@ -14,21 +14,31 @@
 		<!-- 二级缓存 -->
 		<setting name="cacheEnabled" value="true" />
 	</settings>
-	<!-- 包别名 -->
+	<!-- 插件 -->
+
+	<!-- 类型命名 -->
 	<typeAliases>
 		<package name="com.zyd.simple.model" />
 	</typeAliases>
+	<!-- 类型处理器 -->
 	<typeHandlers>
 		<!--枚举类型处理器 -->
 		<typeHandler handler="com.zyd.simple.type.EnabledTypeHandler"
 			javaType="com.zyd.simple.type.Enabled" />
 	</typeHandlers>
+	<plugins>
+		<!-- 拦截器 -->
+		<plugin interceptor="com.zyd.simple.plugin.CameHumpInterceptor" />
+	</plugins>
 	<!-- 环境配置数据库连接 -->
 	<environments default="development">
+		<!-- 环境变量 -->
 		<environment id="development">
+			<!-- 事务管理器 -->
 			<transactionManager type="JDBC">
 				<property name="" value="" />
 			</transactionManager>
+			<!-- 数据源 -->
 			<dataSource type="UNPOOLED">
 				<property name="driver" value="com.mysql.jdbc.Driver" />
 				<property name="url"
@@ -38,6 +48,7 @@
 			</dataSource>
 		</environment>
 	</environments>
+	<!-- 数据库厂商标识 -->
 	<databaseIdProvider type="DB_VENDOR">
 		<property name="SQL Server" value="sqlserver" />
 		<property name="DB2" value="db2" />
@@ -49,7 +60,7 @@
 		<property name="H2" value="h2" />
 	</databaseIdProvider>
 
-	<!-- SQL语句和配置文件 -->
+	<!-- 映射器 SQL语句和配置文件 -->
 	<mappers>
 		<package name="com.zyd.simple.mapper" />
 	</mappers>
