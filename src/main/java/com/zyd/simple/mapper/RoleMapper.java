@@ -12,6 +12,7 @@ import org.apache.ibatis.annotations.Results;
 import org.apache.ibatis.annotations.Select;
 import org.apache.ibatis.annotations.SelectKey;
 import org.apache.ibatis.annotations.Update;
+import org.apache.ibatis.session.RowBounds;
 
 import com.zyd.simple.model.SysRole;
 
@@ -51,6 +52,14 @@ public interface RoleMapper {
 	@ResultMap("roleResultMap")
 	@Select("select * from sys_role")
 	List<SysRole> selectAll();
+
+	/**
+	 * 查询所有角色
+	 * 
+	 * @param rowBounds
+	 * @return
+	 */
+	List<SysRole> selectAll(RowBounds rowBounds);
 
 	/**
 	 * 插入角色

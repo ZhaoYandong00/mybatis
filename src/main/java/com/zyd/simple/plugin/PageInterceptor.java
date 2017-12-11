@@ -57,7 +57,7 @@ public class PageInterceptor implements Interceptor {
 				// 创建count查询的缓存key
 				CacheKey countKey = executor.createCacheKey(countMs, parameterObject, rowBounds, boundSql);
 				// 调用方言获取count sql
-				String countSql = dialect.getCountSql(boundSql, parameterObject, rowBounds, countKey);
+				String countSql = dialect.getCountSql(boundSql, parameterObject, RowBounds.DEFAULT, countKey);
 				BoundSql countBoundSql = new BoundSql(ms.getConfiguration(), countSql, boundSql.getParameterMappings(),
 						parameterObject);
 				// 当使用动态SQL时，可能会产生临时的参数
@@ -66,13 +66,13 @@ public class PageInterceptor implements Interceptor {
 					countBoundSql.setAdditionalParameter(key, additionalParamters.get(key));
 				}
 				// 执行count查询
-				Object countResultlist = executor.query(countMs, parameterObject, rowBounds, resultHandler, countKey,
-						countBoundSql);
+				Object countResultlist = executor.query(countMs, parameterObject, RowBounds.DEFAULT, resultHandler,
+						countKey, countBoundSql);
 				Long count = (Long) ((List) countResultlist).get(0);
 				// 处理查询总数
 				dialect.afterCount(count, parameterObject, rowBounds);
 				if (count == 0L) {
-					// 查询总数为9时，直接返回空的结果
+					// 查询总数为0时，直接返回空的结果
 					return dialect.afterPage(new ArrayList(), parameterObject, rowBounds);
 				}
 			}
@@ -151,7 +151,7 @@ public class PageInterceptor implements Interceptor {
 		dialect.setProperties(properties);
 		try {
 			// 反射获取BoundSql中的additionalParmeters属性
-			additionalParamtersField = BoundSql.class.getDeclaredField("additionalParmeters");
+			additionalParamtersField = BoundSql.class.getDeclaredField("additionalParameters");
 			additionalParamtersField.setAccessible(true);
 		} catch (Exception e) {
 			throw new RuntimeException(e);

@@ -26,9 +26,14 @@
 		<typeHandler handler="com.zyd.simple.type.EnabledTypeHandler"
 			javaType="com.zyd.simple.type.Enabled" />
 	</typeHandlers>
+	<!-- 插件 -->
 	<plugins>
 		<!-- 拦截器 -->
 		<plugin interceptor="com.zyd.simple.plugin.CameHumpInterceptor" />
+		<!-- 分页插件 -->
+		<plugin interceptor="com.zyd.simple.plugin.PageInterceptor">
+			<property name="dialect" value="com.zyd.simple.plugin.MySqlDialect" />
+		</plugin>
 	</plugins>
 	<!-- 环境配置数据库连接 -->
 	<environments default="development">
